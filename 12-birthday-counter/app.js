@@ -39,6 +39,7 @@ month = months[month];
 giveway.textContent = `${weekday}, ${date} ${month} ${year} ${hours}:${minutes}am`;
 // future time in ms 
 const futureTime = futureDate.getTime();
+
 function getRemainingTime() {
   const today = new Date().getTime();
   const t = futureTime - today;
@@ -51,7 +52,7 @@ function getRemainingTime() {
   days = Math.floor(days);
   let hours = Math.floor((t % onnDay) / oneHour);
   let minutes = Math.floor((t % oneHour) / oneMinute);
-  let seconds = Math.floor((t % oneMinute) / 100);
+  let seconds = Math.floor((t % oneMinute) / 1000);
   console.log(days);
   console.log(hours);
   console.log(minutes);
@@ -62,5 +63,10 @@ function getRemainingTime() {
   items[3].innerHTML = seconds;
 
 }
-getRemainingTime();
+
+
+window.onload = startInterval;
+function startInterval() {
+  setInterval("getRemainingTime();", 1000);
+}
 
